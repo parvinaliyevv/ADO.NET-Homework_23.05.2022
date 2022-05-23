@@ -1,0 +1,117 @@
+﻿<Window x:Class="Solution.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        Title="MainView" Height="450" Width="800" mc:Ignorable="d" Loaded="Window_Loaded">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0">
+
+            <ComboBox SelectedItem="{Binding SelectedAuthor}" ItemsSource="{Binding Authors}" DockPanel.Dock="Left">
+
+                <ComboBox.Width>150</ComboBox.Width>
+                <ComboBox.Margin>10</ComboBox.Margin>
+
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding AuthorSelectedChangedCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+            </ComboBox>
+
+            <ComboBox SelectedItem="{Binding SelectedCategory}" ItemsSource="{Binding Categories}" DockPanel.Dock="Left">
+
+                <ComboBox.Width>150</ComboBox.Width>
+                <ComboBox.Margin>10</ComboBox.Margin>
+
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding CategorySelectedChangedCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+            </ComboBox>
+
+            <Button DockPanel.Dock="Right">
+
+                Add
+
+                <Button.Height>Auto</Button.Height>
+                <Button.Width>70</Button.Width>
+                <Button.Margin>10</Button.Margin>
+
+            </Button>
+
+            <DockPanel Margin="50, 10">
+
+                <Button Command="{Binding SearchBooksCommand}" DockPanel.Dock="Right">
+
+                    Search
+
+                    <Button.Width>70</Button.Width>
+                    <Button.Margin>5, 0</Button.Margin>
+
+                </Button>
+
+                <TextBox Text="{Binding SearchValue, Mode=OneWayToSource}">
+
+                </TextBox>
+
+            </DockPanel>
+
+        </DockPanel>
+
+        <DataGrid ItemsSource="{Binding Books, Mode=TwoWay}" AutoGenerateColumns="False" Margin="25" Grid.Row="1">
+            
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="0.5*"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1.5*"/>
+                <DataGridTextColumn Header="Publisher Name" Binding="{Binding PublisherName}" Width="1.5*"/>
+                <DataGridTextColumn Header="Pages" Binding="{Binding Pages}" Width="0.5*"/>
+                <DataGridTextColumn Header="Press Year" Binding="{Binding YearPress}" Width="0.8*"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="0.8*"/>
+                <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="3*"/>
+                
+                <DataGridTemplateColumn Header="Delete" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Margin="3" Content="Delete" CommandParameter="{Binding Path=UserID}"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="Update" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Margin="3" Content="Update" CommandParameter="{Binding Path=UserID}"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+    </Grid>
+
+</Window>
