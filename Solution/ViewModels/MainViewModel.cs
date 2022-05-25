@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Controls;
 
 namespace Solution.ViewModels;
 
@@ -26,6 +27,10 @@ public class MainViewModel
     public RelayCommand SearchBooksCommand { get; set; }
 
 
+    public RelayCommand UpdateBookCommand { get; set; }
+    public RelayCommand DeleteBookCommand { get; set; }
+
+
     public MainViewModel()
     {
         Authors = new ObservableCollection<Author>();
@@ -37,6 +42,9 @@ public class MainViewModel
         AuthorSelectedChangedCommand = new(sender => ParseBooks());
         CategorySelectedChangedCommand = new(sender => ParseBooks());
         SearchBooksCommand = new(sender => SearchBook());
+
+        UpdateBookCommand = new(sender => UpdateBook((sender as DataGridCellInfo?)?.Item as Book));
+        DeleteBookCommand = new(sender => DeleteBook((sender as DataGridCellInfo?)?.Item as Book));
 
 
         string command = "SELECT Id, FirstName + ' ' + LastName as FullName FROM Authors; SELECT * FROM Categories";
@@ -61,7 +69,7 @@ public class MainViewModel
         ParseBooks();
     }
 
-
+  
     public void ParseBooks()
     {
         string command = @"SELECT Books.Id, Books.Name, Press.Name as PublisherName, Pages, YearPress, Quantity, Comment
@@ -109,6 +117,61 @@ public class MainViewModel
 
             foreach (var item in books)
                 Books.Remove(item);
+        }
+    }
+
+    private void UpdateBook(Book book)
+    {
+        if (book is null) return;
+
+        try
+        {
+            _dbConnection.Open();
+
+            var command = new SqlCommand(@"UPDATE Books
+                                           SET Books.Name = @bookName,
+                                           Books.Pages = @bookPage,
+                                           Books.YearPress = @bookYearPress,
+                                           Books.Quantity = @bookQuantity,
+                                           Books.Comment = @BookComment
+                                           WHERE Books.Id = @bookId", _dbConnection);
+
+
+            command.Parameters.AddWithValue("@bookId", book.Id);
+            command.Parameters.AddWithValue("@bookName", book.Name);
+            command.Parameters.AddWithValue("@bookPage", book.Pages);
+            command.Parameters.AddWithValue("@bookYearPress", book.YearPress);
+            command.Parameters.AddWithValue("@bookQuantity", book.Quantity);
+            command.Parameters.AddWithValue("@bookComment", book.Comment);
+
+            command.ExecuteNonQuery();
+        }
+        catch { }
+        finally
+        {
+            _dbConnection.Close();
+        }
+    }
+
+    private void DeleteBook(Book book)
+    {
+        if (book is null) return;
+
+        try
+        {
+            _dbConnection.Open();
+
+            var command = new SqlCommand("DELETE FROM Books WHERE Books.Id = @bookId", _dbConnection);
+
+            command.Parameters.AddWithValue("@bookId", book.Id);
+
+            command.ExecuteNonQuery();
+
+            Books.Remove(book);
+        }
+        finally
+        {
+            _dbConnection.Close();
         }
     }
 }

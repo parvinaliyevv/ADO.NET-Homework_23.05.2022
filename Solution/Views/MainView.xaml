@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="MainView" Height="450" Width="800" mc:Ignorable="d" Loaded="Window_Loaded">
 
     <Grid>
@@ -81,33 +82,33 @@
 
         </DockPanel>
 
-        <DataGrid ItemsSource="{Binding Books, Mode=TwoWay}" AutoGenerateColumns="False" Margin="25" Grid.Row="1">
-            
+        <DataGrid ItemsSource="{Binding Books, Mode=TwoWay}" SelectionMode="Single" AutoGenerateColumns="False" Margin="25" Grid.Row="1">
+
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="0.5*"/>
+                <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding Id}" Width="0.5*"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1.5*"/>
-                <DataGridTextColumn Header="Publisher Name" Binding="{Binding PublisherName}" Width="1.5*"/>
+                <DataGridTextColumn Header="Publisher Name" IsReadOnly="True" Binding="{Binding PublisherName}" Width="1.5*"/>
                 <DataGridTextColumn Header="Pages" Binding="{Binding Pages}" Width="0.5*"/>
                 <DataGridTextColumn Header="Press Year" Binding="{Binding YearPress}" Width="0.8*"/>
                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="0.8*"/>
                 <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" Width="3*"/>
-                
-                <DataGridTemplateColumn Header="Delete" Width="100">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Margin="3" Content="Delete" CommandParameter="{Binding Path=UserID}"></Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                
+
                 <DataGridTemplateColumn Header="Update" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Margin="3" Content="Update" CommandParameter="{Binding Path=UserID}"></Button>
+                            <Button Margin="3" Content="Update" Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.UpdateBookCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor}, Path=CurrentCell}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
+
+                <DataGridTemplateColumn Header="Delete" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Margin="3" Content="Delete" Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.DeleteBookCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=DataGrid, Mode=FindAncestor}, Path=CurrentCell}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
 
         </DataGrid>

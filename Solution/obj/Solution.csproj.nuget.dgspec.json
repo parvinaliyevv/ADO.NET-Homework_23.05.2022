@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\Desktop\\Solution\\Solution\\Solution.csproj": {}
+    "C:\\Users\\HP\\Desktop\\ADO.NET-Homework_23.05.2022\\Solution\\Solution.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\Desktop\\Solution\\Solution\\Solution.csproj": {
+    "C:\\Users\\HP\\Desktop\\ADO.NET-Homework_23.05.2022\\Solution\\Solution.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\Desktop\\Solution\\Solution\\Solution.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Desktop\\ADO.NET-Homework_23.05.2022\\Solution\\Solution.csproj",
         "projectName": "Solution",
-        "projectPath": "C:\\Users\\HP\\Desktop\\Solution\\Solution\\Solution.csproj",
+        "projectPath": "C:\\Users\\HP\\Desktop\\ADO.NET-Homework_23.05.2022\\Solution\\Solution.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\Desktop\\Solution\\Solution\\obj\\",
+        "outputPath": "C:\\Users\\HP\\Desktop\\ADO.NET-Homework_23.05.2022\\Solution\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -67,7 +67,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
