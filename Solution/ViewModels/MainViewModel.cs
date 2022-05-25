@@ -146,7 +146,10 @@ public class MainViewModel
 
             command.ExecuteNonQuery();
         }
-        catch { }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
         finally
         {
             _dbConnection.Close();
@@ -168,6 +171,10 @@ public class MainViewModel
             command.ExecuteNonQuery();
 
             Books.Remove(book);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
         }
         finally
         {

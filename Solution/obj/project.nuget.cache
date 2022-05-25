@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "8m6dxzhEq6EpruaVYS5s/fqPeZEentL4Qa+NtGRMyKC7FZ50aivz7YCecr/rkGEkqH8y/Rzwck+i3HDPW3aNog==",
+  "dgSpecHash": "iaQSOyBZ+qprb0J6EIkxz7/BRYLy6KL8Q6de3eooGmLUlkYN28ZKrTSNqJ4Kz5CXgDbrSOwyRBhh/jIceaoD4g==",
   "success": true,
   "projectFilePath": "C:\\Users\\HP\\Desktop\\ADO.NET-Homework_23.05.2022\\Solution\\Solution.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\HP\\.nuget\\packages\\materialdesigncolors\\2.0.6\\materialdesigncolors.2.0.6.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\materialdesignthemes\\4.5.0\\materialdesignthemes.4.5.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",

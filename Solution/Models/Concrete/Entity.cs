@@ -1,6 +1,23 @@
-﻿namespace Solution.Models.Concrete;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-public class Entity
+namespace Solution.Models.Concrete;
+
+public class Entity: INotifyPropertyChanged
 {
-    public int Id { get; set; }
+    private int _id;
+    public int Id
+    {
+        get => _id;
+        set { _id = value; OnPropertyChanged(); }
+    }
+
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChangedEventHandler handler = PropertyChanged;
+        if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+    }
 }
